@@ -1,0 +1,21 @@
+.Customer {
+    border: 1px solid black;
+    text-align: left;
+}
+
+.CustomerName {
+    background-color: rgb(1, 108, 203);
+    color: white;
+    padding-left: 5px;
+    font-size: 20px;
+}
+
+.Customer > p {
+    padding-left: 5px;
+}
+
+.Customer > a {
+    padding-left: 5px;
+    text-decoration: none;
+    color: rgb(113, 161, 176);
+}

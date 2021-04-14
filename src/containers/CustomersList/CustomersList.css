@@ -1,0 +1,15 @@
+.CustomersList {
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.Customer {
+    width: calc(25% - 10px);
+    margin-left: 10px;
+    margin-top: 10px;
+}

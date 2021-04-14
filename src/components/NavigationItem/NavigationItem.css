@@ -1,0 +1,17 @@
+.NavigationItem {
+    margin-left: 30px;
+}
+
+.NavigationItem a {
+    text-decoration: none;
+    color: rgb(85, 78, 78);
+    display: block;
+    padding: 9px 9px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.NavigationItem a.active {
+    border-radius: 5px;
+    background-color: rgb(192, 189, 189);
+}
