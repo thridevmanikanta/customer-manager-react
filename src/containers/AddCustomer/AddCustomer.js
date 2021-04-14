@@ -10,7 +10,8 @@ class AddCustomer extends Component {
     state = {
         fname: '',
         lname: '',
-        city: ''
+        city: '',
+        validCustomerInput: false
     }
 
     addCustomerHandler = (event) => {
@@ -21,8 +22,24 @@ class AddCustomer extends Component {
             .post('/customers.json', this.state)
             .then(response => {
                 this.props.customerAdded()
+                document.getElementById('add-customer-form').reset()
+                this.setState({
+                    validCustomerInput: false
+                })
             })
             .catch(error => console.log(error))
+    }
+
+    isCustomerDataValid = () => {
+        if (this.state.fname !== '' && this.state.lname !== '' && this.state.city !== '') {
+            this.setState({
+                validCustomerInput: true
+            })
+        } else {
+            this.setState({
+                validCustomerInput: false
+            })
+        }
     }
 
     inputChangedHandler = (event) => {
@@ -31,17 +48,17 @@ class AddCustomer extends Component {
             case 'fnameinput':
                 this.setState({
                     fname: event.target.value
-                });
+                }, this.isCustomerDataValid);
                 break;
             case 'lnameinput':
                 this.setState({
                     lname: event.target.value
-                });
+                }, this.isCustomerDataValid);
                 break;
             case 'cityinput':
                 this.setState({
                     city: event.target.value
-                });
+                }, this.isCustomerDataValid);
                 break;
             default:
                 console.log('Not a valid input');
@@ -55,7 +72,7 @@ class AddCustomer extends Component {
                 <div className={classes.CustomersHeading}>
                     <h1>Customers</h1>
                 </div>
-                <form className={classes.CustomerInputForm} onSubmit={this.addCustomerHandler}>
+                <form id='add-customer-form' className={classes.CustomerInputForm} onSubmit={this.addCustomerHandler}>
                     <InputWithLabel
                         id='fnameinput'
                         label="First Name:"
@@ -71,7 +88,7 @@ class AddCustomer extends Component {
                         label="City:"
                         placeholder="Customer City"
                         changed={this.inputChangedHandler} />
-                    <button type="submit" onClick={this.addCustomerHandler.bind(this)}>Add Customer</button>
+                    <button disabled={!this.state.validCustomerInput} type="submit" onClick={this.addCustomerHandler.bind(this)}>Add Customer</button>
                 </form>
             </Aux>
         );
